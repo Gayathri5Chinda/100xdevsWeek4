@@ -1,0 +1,32 @@
+
+
+<html>
+    <script>
+        function populateDiv(){
+            const a = document.getElementById("ele1").value;
+            const b = document.getElementById("ele2").value;
+            const c = document.getElementById("ele3").value;
+            //without backend server
+            //element.innerHTML = parseInt(ele1) + parseInt(ele2);
+
+            //with backend server
+            fetch("https://sum-server.100xdevs.com/interest?principal="+ a + "&rate="+ b + "&time=" + c)
+            .then(function(response){
+                console.log(response);
+                response.text()
+                .then(function(ans){
+                    console.log(ans);
+                    document.getElementById("finalSum").innerHTML = ans;
+                })
+            });
+        }
+
+    </script>
+    <body>
+        <input type="text" id = "ele1" placeholder="principal"></input><br></br>
+        <input type="text" id = "ele2" placeholder="rate"></input><br></br>
+        <input type="text" id = "ele3" placeholder="time"></input><br></br>
+        <button onclick = "populateDiv()">Calculate sum</button><br></br>
+        <div id = "finalSum"></div>
+    </body>
+</html>
